@@ -45,7 +45,7 @@
         canvas.addEventListener('mousemove',
           function(evt) {
             var mousePos = calculateMousePos(evt);
-            paddle2Y = mousePos.y - (PADDLE_HEIGHT/2);
+            paddle1Y = mousePos.y - (PADDLE_HEIGHT/2);
           });
     }
 
@@ -55,9 +55,19 @@
       ballY = canvas.height/2;
     }
 
+    function ai() {
+      if(paddle2Y < ballY) {
+            paddle2Y += 6;//if paddle2Y is above the ball move it down six spaces!
+      } else {
+        paddle2Y -= 6; //it must be below the ball so move up 6
+      }
+    }
+
     function moveEverything() {
-            ballX = ballX + ballSpeedX;
-            ballY = ballY + ballSpeedY;
+              ai();
+
+            ballX += ballSpeedX;
+            ballY += ballSpeedY;
 
             if(ballX < 0){
               if(ballY > paddle1Y && ballY < paddle1Y+PADDLE_HEIGHT){
