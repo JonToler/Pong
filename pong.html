@@ -19,6 +19,8 @@
     var player2Score = 0;
     const WINNING_SCORE = 3;
 
+    var showingWinScreen = false;
+
     var paddle1Y = 250;
     var paddle2Y = 250;
     const PADDLE_THICKNESS = 10;
@@ -57,6 +59,7 @@
       if(player1Score >= WINNING_SCORE || player2Score >= WINNING_SCORE){
           player1Score = 0;
           player2Score = 0;
+          showingWinScreen = true;
       }
 
       ballSpeedX = -ballSpeedX;
@@ -74,7 +77,10 @@
     }
 
     function moveEverything() {
-              ai();
+            if(showingWinScreen){
+              return;
+            }
+            ai();
 
             ballX += ballSpeedX;
             ballY += ballSpeedY;
@@ -113,6 +119,12 @@
     function drawEverything() {
       //Next line blanks out the screen with green
       colorRect(0,0,canvas.width,canvas.height, 'green');
+
+      if(showingWinScreen){
+        canvasContext.fillStyle = 'pink';
+        canvasContext.fillText("Please click to play agian!", 100, 100);
+        return;
+      }
 
       //This is the left player paddle
       colorRect(0,paddle1Y,PADDLE_THICKNESS,PADDLE_HEIGHT,'red');
