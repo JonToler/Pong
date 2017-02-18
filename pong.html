@@ -123,6 +123,12 @@
             }
           }
 
+    function drawNet(){
+        for(var i=0; i<canvas.height; i+=40){
+             colorRect(canvas.width/2-1,i,2,20, 'white');
+
+        }
+    }
 
     function drawEverything() {
       //Next line blanks out the screen with green
@@ -144,6 +150,8 @@
         canvasContext.fillText("Please click to play agian!", 350, 500);
         return;
       }
+
+      drawNet();
 
       //This is the left player paddle
       colorRect(0,paddle1Y,PADDLE_THICKNESS,PADDLE_HEIGHT,'red');
