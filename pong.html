@@ -38,6 +38,10 @@
       };
     }
 
+    function handleMouseClick(evt){
+
+    }
+
     window.onload = function() {
       canvas = document.getElementById('gameCanvas');
       canvasContext = canvas.getContext('2d');
@@ -47,6 +51,8 @@
           moveEverything();
           drawEverything();
         }, 1000/framesPerSecond);
+
+        canvas.addEventListener('mousedown',handleMouseClick);
 
         canvas.addEventListener('mousemove',
           function(evt) {
